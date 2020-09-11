@@ -8,6 +8,8 @@
 <title>resAll.jsp</title>
 </head>
 <body>
+<form method="post" name="frm" id="frm"
+	  action="${pageContext.request.contextPath}/resSelect.do">
 	<table border="1" id="members">
 		<thead>
 			<tr>
@@ -18,10 +20,11 @@
 		<tbody>
 		<c:forEach items="${list}" var="res">
 			<tr>
-				<td>${res.no}</td>
-				<td>${res.name}</td>
+				<td><a href="#">${res.no}. ${res.name}</a></td>
+				<td>${res.content}</td>
 		</c:forEach>
 		</tbody>
 	</table>
+</form>
 </body>
 </html>

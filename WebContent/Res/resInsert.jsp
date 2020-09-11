@@ -33,7 +33,7 @@
 		<div>
 			<button type="reset" name="reset">초기화</button>
 			<button>등록</button>
-	</div>
+		</div>
 	</form>
 </body>
 </html>
