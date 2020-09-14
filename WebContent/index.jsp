@@ -8,7 +8,7 @@
 </head>
 <body>
 <script>
-	location.href="resList.do"
+	location.href="resList.do"  
 </script>
 </body>
 </html>
