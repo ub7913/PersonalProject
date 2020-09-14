@@ -7,7 +7,12 @@
 <title>resSelect.jsp</title>
 </head>
 <body>
-	
-	식당 이름 : 
+	<div>
+		<label>식당이름</label><br>
+		${res.name}
+	</div>
+	<div>
+		<p>${res.content}</p>
+	</div>
 </body>
 </html>

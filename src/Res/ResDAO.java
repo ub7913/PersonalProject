@@ -114,8 +114,33 @@ public class ResDAO {
 	}
 	
 	public ResVO selectOne(ResVO res) {
-		
-		
-		return res;
+		ResVO resultVO = null;
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT no, title, content, name, tel, address, regdate"
+					+ " FROM res"
+					+ " WHERE no = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, res.getNo());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVO = new ResVO();
+				resultVO.setNo(rs.getInt(1));
+				resultVO.setTitle(rs.getString("title"));
+				resultVO.setContent(rs.getString("content"));
+				resultVO.setName(rs.getString("name"));
+				resultVO.setTel(rs.getString("tel"));
+				resultVO.setAddress(rs.getString("address"));
+				resultVO.setRegdate(rs.getString("regdate"));
+			} else {
+				System.out.println("no data");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+		}
+		return resultVO;
 	}
 }

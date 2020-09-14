@@ -20,7 +20,7 @@
 		<tbody>
 		<c:forEach items="${list}" var="res">
 			<tr>
-				<td><a href="#">${res.no}. ${res.name}</a></td>
+				<td><a href="resSelect.do?no=${res.getNo()}">${res.no}. ${res.name}</a></td>
 				<td>${res.content}</td>
 		</c:forEach>
 		</tbody>
