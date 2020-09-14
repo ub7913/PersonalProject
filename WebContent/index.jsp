@@ -11,5 +11,5 @@
 	location.href="resList.do"  
 </script>
 </body>
-<p>test</p>
+<p>test1s</p>
 </html>
