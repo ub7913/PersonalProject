@@ -27,14 +27,15 @@ public class ResDAO {
 				//1. DB 연결
 				conn = ConnectionManager.getConnnect();
 				//2. sql 구문 실행
-				String sql="insert into res (no, title, content, name, tel, address, regdate) "
-						+ "values (res_seq.nextval, ?, ?, ?, ?, ?, sysdate)";
+				String sql="insert into res (no, title, content, name, tel, address, regdate, filename) "
+						+ "values (res_seq.nextval, ?, ?, ?, ?, ?, sysdate, ?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, resVO.getTitle());
 				pstmt.setString(2, resVO.getContent());
 				pstmt.setString(3, resVO.getName());
 				pstmt.setString(4, resVO.getTel());
 				pstmt.setString(5, resVO.getAddress());
+				pstmt.setString(6, resVO.getFilename());
 				r = pstmt.executeUpdate();
 				//3. 결과처리
 				System.out.println(r + " 건이 처리됨");
@@ -89,7 +90,7 @@ public class ResDAO {
 		ArrayList<ResVO> list = new ArrayList<ResVO>();//리턴값을 저장할 변수 저장
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT no, title, content, name, tel, address, regdate"
+			String sql = "SELECT no, title, content, name, tel, address, regdate, filename"
 					+ " FROM res"
 					+ " ORDER BY no";
 			pstmt=conn.prepareStatement(sql);
@@ -103,6 +104,7 @@ public class ResDAO {
 				resultVO.setTel(rs.getString("tel"));
 				resultVO.setAddress(rs.getString("address"));
 				resultVO.setRegdate(rs.getString("regdate"));
+				resultVO.setFilename(rs.getString("filename"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {
@@ -118,7 +120,7 @@ public class ResDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT no, title, content, name, tel, address, regdate"
+			String sql = "SELECT no, title, content, name, tel, address, regdate, filename"
 					+ " FROM res"
 					+ " WHERE no = ?";
 			pstmt=conn.prepareStatement(sql);
@@ -133,6 +135,7 @@ public class ResDAO {
 				resultVO.setTel(rs.getString("tel"));
 				resultVO.setAddress(rs.getString("address"));
 				resultVO.setRegdate(rs.getString("regdate"));
+				resultVO.setFilename(rs.getString("filename"));
 			} else {
 				System.out.println("no data");
 			}

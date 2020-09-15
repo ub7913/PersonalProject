@@ -10,11 +10,12 @@ public class ResVO {
 	String regdate;
 	Integer first;
 	Integer last;
+	String filename;
 	
 	
 	
 	public ResVO(Integer no, String title, String content, String name, String tel, String address, String regdate,
-			Integer first, Integer last) {
+			Integer first, Integer last, String filename) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -25,9 +26,12 @@ public class ResVO {
 		this.regdate = regdate;
 		this.first = first;
 		this.last = last;
+		this.filename = filename;
 	}
 
 	public ResVO() { }
+	
+	
 	
 	public Integer getNo() {
 		return no;
@@ -87,6 +91,16 @@ public class ResVO {
 	public void setLast(Integer last) {
 		this.last = last;
 	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	
+	
 	
 	
 	

@@ -9,7 +9,8 @@
 <body>
 <h3>식당등록</h3>
 	<form method="post" name="frm" id="frm" 
-		  action="${pageContext.request.contextPath}/resInsert.do">
+		  enctype="multipart/form-data"
+		  action="${pageContext.request.contextPath}/ResInsertServ">
 		<div>
 			<label>제목</label>
 			<input type="text" name="title" id="title">
@@ -29,6 +30,10 @@
 		<div>
 			<label>주소</label>
 			<input type="text" name="address" id="address">
+		</div>
+		<div>
+			<label>파일첨부</label>
+			<input type="file" name="filename" id="filename" size="30">
 		</div>
 		<div>
 			<button type="reset" name="reset">초기화</button>

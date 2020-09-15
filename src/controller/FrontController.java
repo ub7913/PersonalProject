@@ -28,6 +28,7 @@ public class FrontController extends HttpServlet{
 		list.put("/resSearch.do", new ResSearchController());
 		list.put("/resDelete.do", new ResDeleteController());
 		list.put("/resList.do", new ResListController());
+		list.put("/resFilenameDownload.do", new ResFilenameDownloadCon());
 	}
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +37,11 @@ public class FrontController extends HttpServlet{
 		String contextPath = request.getContextPath(); 
 		String path = uri.substring(contextPath.length()); 
 		Controller subController = list.get(path);
+		
+		System.out.println("uri: "+uri);
+		System.out.println("contextPath: " + contextPath);
+		System.out.println("path: " + path);
+		
 		subController.execute(request, response);
 	}
 	
