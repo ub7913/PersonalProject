@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.Controller;
+import common.Controller;
 import reveiw.ReviewDAO;
 import reveiw.ReviewVO;
 
@@ -22,10 +22,11 @@ public class ReviewInsertController implements Controller {
 		rev.setContent(content);
 		
 		int r = ReviewDAO.getInstance().insert(rev);
+		System.out.println(r+"건이 실행됨");
 		
 		request.setAttribute("cnt", r);
 		
-		response.sendRedirect("/review/reviewList.do");
+		response.sendRedirect("reviewList.do");
 		//request.getRequestDispatcher("/review/reviewList.do").forward(request, response);
 		
 	}

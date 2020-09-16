@@ -1,4 +1,4 @@
-package controller;
+package resController;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Res.ResDAO;
 import Res.ResVO;
+import common.Controller;
 
 public class ResSelectController implements Controller {
 

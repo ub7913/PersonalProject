@@ -9,10 +9,10 @@
 <body>
 <form method="post" action="${pageContext.request.contextPath}/reviewInsert.do">
 	<div>
-		작성자 : <input type="text">
+		작성자 : <input type="text" name="poster" id="poster">
 	</div>
 	<div>
-		리뷰 : <textarea></textarea>
+		리뷰 : <textarea name="content" id="content"></textarea>
 	</div>
 	<button>등록</button>
 </form>	

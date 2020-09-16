@@ -1,4 +1,4 @@
-package controller;
+package common;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import resController.ResDeleteController;
+import resController.ResFilenameDownloadCon;
+import resController.ResInsertController;
+import resController.ResListController;
+import resController.ResSearchController;
+import resController.ResSearchPageController;
+import resController.ResSelectController;
+import resController.ResUpdateController;
 import reviewController.ReviewInsertController;
 import reviewController.ReviewListController;
 

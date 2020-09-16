@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import Res.ResVO;
 import common.ConnectionManager;
 
 public class ReviewDAO {
@@ -26,7 +27,7 @@ public class ReviewDAO {
 				//1. DB 연결
 				conn = ConnectionManager.getConnnect();
 				//2. sql 구문 실행
-				String sql="insert into res (no,poster,content,regdate) "
+				String sql="insert into review (no,poster,content,regdate) "
 						+ "values (review_seq.nextval, ?, ?, sysdate)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ReviewVO.getPoster());
@@ -74,5 +75,22 @@ public class ReviewDAO {
 				ConnectionManager.close(rs, pstmt, conn);
 			}
 			return list;	
+		}
+		
+		public int count(ReviewVO reviewVO) {
+			int cnt = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select count(*) from res";
+				pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				ConnectionManager.close(conn);
+			}
+			return cnt;
 		}
 }
