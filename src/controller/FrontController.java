@@ -5,12 +5,15 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reviewController.ReviewInsertController;
+import reviewController.ReviewListController;
+
+@MultipartConfig
 public class FrontController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -29,6 +32,11 @@ public class FrontController extends HttpServlet{
 		list.put("/resDelete.do", new ResDeleteController());
 		list.put("/resList.do", new ResListController());
 		list.put("/resFilenameDownload.do", new ResFilenameDownloadCon());
+		
+		//review
+		list.put("/reviewInsert.do", new ReviewInsertController());
+		list.put("/reviewList.do", new ReviewListController());
+		
 	}
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

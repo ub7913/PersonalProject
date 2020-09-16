@@ -90,10 +90,23 @@ public class ResDAO {
 		ArrayList<ResVO> list = new ArrayList<ResVO>();//리턴값을 저장할 변수 저장
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT no, title, content, name, tel, address, regdate, filename"
+			String where = " where 1=1 ";
+			if(res.getName() != null) {
+				where += " and name like '%' || ? || '%'";
+			}
+			String sql = "select a.*     from( select b.* , rownum rn    from("
+					+ "select *"
 					+ " FROM res"
-					+ " ORDER BY no";
+					+ where
+					+ " ORDER BY no"
+					+ " ) b )a where rn between ? and ?";
 			pstmt=conn.prepareStatement(sql);
+			int pos = 1;
+			if(res.getName() != null) {
+				pstmt.setString(pos++, res.getName());
+			}
+			pstmt.setInt(pos++, res.getFirst());
+			pstmt.setInt(pos++, res.getLast());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				resultVO = new ResVO();
@@ -146,4 +159,30 @@ public class ResDAO {
 		}
 		return resultVO;
 	}
+	
+	//전체 건수 
+			public int count(ResVO resVO) {
+				int cnt = 0;
+				try {
+					conn = ConnectionManager.getConnnect();
+					String where = " where 1=1 ";
+					if(resVO.getName() != null) {
+						where += " and name like '%' || ? || '%'";
+					}
+					String sql = "select count(*) from res" + where;
+					pstmt = conn.prepareStatement(sql);
+					int pos = 1;
+					if(resVO.getName() != null) {
+						pstmt.setString(pos++, resVO.getName());
+					}
+					ResultSet rs = pstmt.executeQuery();
+					rs.next();
+					cnt = rs.getInt(1);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}finally {
+					ConnectionManager.close(conn);
+				}
+				return cnt;
+			}
 }
